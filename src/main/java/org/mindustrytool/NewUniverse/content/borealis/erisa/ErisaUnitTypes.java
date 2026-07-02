@@ -71,7 +71,6 @@ public class ErisaUnitTypes {
     public UnitType altiar;
 
     /** Colossal naval fortress. */
-    public UnitType cetus;
 
     // ████████████████████████████████████████████████████████████████████████
     //  Flying-2 Attacker — Fenrir line (Norse giant creatures)
@@ -887,98 +886,6 @@ public class ErisaUnitTypes {
             );
         }};
 
-        /** Colossal naval fortress. */
-        cetus = new UnitType("cetus") {{
-            constructor = UnitWaterMove::create;
-            speed = 0.5f;
-            health = 25000;
-            armor = 18f;
-            hitSize = 9f;
-            naval = true;
-            rippleScale = 10;
-            trailLength = 50;
-            weapons = Seq.with(
-                new Weapon("cetus-mainwp") {{
-                    reload = 12;
-                    alternate = true;
-                    x = -7;
-                    y = -5;
-                    shootCone = 10;
-                    rotate = true;
-                    rotateSpeed = 5;
-                    recoil = 2f;
-                    shake = 0.2f;
-                    shootSound = Sounds.shootCyclone;
-                    bullet = new BasicBulletType(7f, 40) {{
-                        width = 8;
-                        height = 11;
-                        lifetime = 30;
-                        trailLength = 2;
-                        hitEffect = Fx.explosion;
-                        despawnEffect = Fx.explosion;
-                        keepVelocity = true;
-                        splashDamage = 10;
-                        splashDamageRadius = 16;
-                        pierceArmor = true;
-                        fragBullets = 2;
-                        fragVelocityMin = 0.5f;
-                        fragVelocityMax = 1.5f;
-                        fragLifeMin = 1f;
-                        fragLifeMax = 2f;
-                        fragBullet = new BasicBulletType(7f, 10) {{
-                            width = 7;
-                            height = 9;
-                            lifetime = 15;
-                            trailLength = 2;
-                            hitEffect = Fx.explosion;
-                            despawnEffect = Fx.explosion;
-                            keepVelocity = true;
-                            splashDamage = 10;
-                            splashDamageRadius = 16;
-                        }};
-                    }};
-                }},
-                new Weapon("cetus-wp1") {{
-                    reload = 30;
-                    alternate = true;
-                    x = -3;
-                    y = -1;
-                    shootCone = 10;
-                    rotate = true;
-                    rotateSpeed = 10;
-                    shootSound = Sounds.shootDuo;
-                    bullet = new BasicBulletType(5f, 15) {{
-                        width = 6;
-                        height = 9;
-                        lifetime = 35;
-                        trailLength = 3;
-                        hitEffect = Fx.hitBulletSmall;
-                        keepVelocity = true;
-                    }};
-                }},
-                new Weapon("cetus-wp2") {{
-                    reload = 30;
-                    alternate = true;
-                    x = 3;
-                    y = 1;
-                    shootCone = 10;
-                    rotate = true;
-                    rotateSpeed = 10;
-                    shootSound = Sounds.shootDuo;
-                    bullet = new BasicBulletType(5f, 15) {{
-                        width = 6;
-                        height = 9;
-                        lifetime = 35;
-                        trailLength = 3;
-                        hitEffect = Fx.hitBulletSmall;
-                        keepVelocity = true;
-                    }};
-                }}
-            );
-            abilities = Seq.with(
-                new ShieldArcAbility() {{ radius = 30; regen = 1f; max = 200; }}
-            );
-        }};
 
         // ████████████████████████████████████████████████████████████████████████
         //  Flying-2 Attacker — Fenrir line (Norse giant creatures)
@@ -1697,7 +1604,8 @@ public class ErisaUnitTypes {
             herja, eir, hlokk, gondul, skogul,
             jotunn, ymir, thrymr, bergelmir, surtr,
             aegir, ran, njordr, jormun, lyngbakr,
-            spearhead, altiar, cetus,
+                spearhead, altiar,
+
             fenrir, garmr, draugr, ragnar,
             diphda, procyon, sirius,
             mimir, hermodr, bragi, forseti, tyr, vidarr,

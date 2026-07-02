@@ -97,6 +97,8 @@ tasks.register<Jar>("deploy") {
     description = "Build cross-platform artifact"
     dependsOn("jarAndroid", "shadowJar")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    destinationDirectory.set(file("build/libs"))
     archiveFileName.set("${rootProject.name}.jar")
 
     from(provider {
@@ -107,8 +109,8 @@ tasks.register<Jar>("deploy") {
     })
 
     doLast {
-        delete("build/libs/${rootProject.name}-desktop.jar")
-        delete("build/libs/${rootProject.name}-android.jar")
+        file("build/libs/${rootProject.name}-desktop.jar").delete()
+        file("build/libs/${rootProject.name}-android.jar").delete()
     }
 }
 
