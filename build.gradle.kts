@@ -1,0 +1,130 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
+plugins {
+    `java-library`
+    id("com.gradleup.shadow") version "9.2.2"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+val mindustryVersion = "v158"
+val jabelVersion = "93fde537c7"
+
+repositories {
+    mavenCentral()
+    maven { url = uri("https://www.jitpack.io") }
+    ivy {
+        url = uri("https://github.com/")
+        metadataSources { artifact() }
+        patternLayout {
+            artifact("/[organisation]/[module]/releases/download/[revision]/[artifact].jar")
+        }
+    }
+}
+
+dependencies {
+    compileOnly("Anuken:Mindustry:$mindustryVersion:dependencies")
+    annotationProcessor("com.github.Anuken:jabel:$jabelVersion")
+
+    compileOnly("org.projectlombok:lombok:1.18.42")
+    annotationProcessor("org.projectlombok:lombok:1.18.42")
+
+    compileOnly("org.jetbrains:annotations:26.0.1")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.1")
+}
+
+val mindustryRuntime = configurations.create("mindustryRuntime")
+
+dependencies {
+    add("mindustryRuntime", "Anuken:Mindustry:$mindustryVersion")
+}
+
+tasks.named<ShadowJar>("shadowJar") {
+    archiveFileName.set("${rootProject.name}-desktop.jar")
+}
+
+val shadowJar = tasks.named<ShadowJar>("shadowJar")
+
+tasks.register("jarAndroid") {
+    description = "Build android jar"
+    dependsOn("shadowJar")
+
+    doLast {
+        val androidHome = System.getenv("ANDROID_HOME") ?: System.getenv("ANDROID_SDK_ROOT")
+        if (androidHome.isNullOrBlank() || !File(androidHome).exists()) {
+            throw GradleException("No valid Android SDK found. Set ANDROID_HOME.")
+        }
+
+        val platformRoot = File(androidHome, "platforms")
+            .listFiles()
+            ?.sorted()
+            ?.reversed()
+            ?.firstOrNull { f -> File(f, "android.jar").exists() }
+            ?: throw GradleException("No android.jar found in SDK platforms.")
+
+        val d8 = if (System.getProperty("os.name").lowercase().contains("windows")) "d8.bat" else "d8"
+
+        val libsDir = file("build/libs")
+        val classpath = (configurations.compileClasspath.get().files
+            + configurations.runtimeClasspath.get().files
+            + File(platformRoot, "android.jar"))
+            .joinToString(" ") { "--classpath ${it.absolutePath}" }
+
+        val process = ProcessBuilder(d8, *classpath.split(" ").toTypedArray(),
+            "--min-api", "26",
+            "--output", "${rootProject.name}-android.jar",
+            "${rootProject.name}-desktop.jar")
+            .directory(libsDir)
+            .redirectOutput(ProcessBuilder.Redirect.INHERIT)
+            .redirectError(ProcessBuilder.Redirect.INHERIT)
+            .start()
+
+        if (process.waitFor() != 0) {
+            throw GradleException("d8 failed")
+        }
+    }
+}
+
+tasks.register<Jar>("deploy") {
+    description = "Build cross-platform artifact"
+    dependsOn("jarAndroid", "shadowJar")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    archiveFileName.set("${rootProject.name}.jar")
+
+    from(provider {
+        listOf(
+            zipTree(file("build/libs/${rootProject.name}-desktop.jar")),
+            zipTree(file("build/libs/${rootProject.name}-android.jar"))
+        )
+    })
+
+    doLast {
+        delete("build/libs/${rootProject.name}-desktop.jar")
+        delete("build/libs/${rootProject.name}-android.jar")
+    }
+}
+
+tasks.register<JavaExec>("runGame") {
+    description = "Build mod, install to Mindustry mods, and launch game"
+    dependsOn(shadowJar)
+
+    doFirst {
+        val modsDir = file(System.getenv("APPDATA") + "/Mindustry/mods")
+        modsDir.mkdirs()
+        copy {
+            from(shadowJar.get().archiveFile)
+            into(modsDir)
+        }
+        println("Copied mod to " + modsDir.resolve("${rootProject.name}-desktop.jar"))
+    }
+
+    standardInput = System.`in`
+    workingDir = file("${rootProject.projectDir}")
+    classpath = mindustryRuntime
+    mainClass.set("mindustry.desktop.DesktopLauncher")
+}
