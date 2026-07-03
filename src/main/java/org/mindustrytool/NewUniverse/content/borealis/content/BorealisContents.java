@@ -9,8 +9,8 @@ import org.mindustrytool.NewUniverse.content.borealis.content.building.BorealisP
 import org.mindustrytool.NewUniverse.content.borealis.content.building.BorealisProductionBlocks;
 import org.mindustrytool.NewUniverse.content.borealis.content.building.BorealisTurretBlocks;
 import org.mindustrytool.NewUniverse.content.borealis.content.enviroment.BorealisEnvironmentBlocks;
-import org.mindustrytool.NewUniverse.content.borealis.content.enviroment.ore.BorealisOreBlocks;
 import org.mindustrytool.NewUniverse.content.borealis.content.item.BorealisItems;
+import org.mindustrytool.NewUniverse.content.borealis.content.item.BorealisLiquids;
 import org.mindustrytool.NewUniverse.content.borealis.content.unit.air.BorealisCoreUnitTypes;
 import org.mindustrytool.NewUniverse.content.borealis.content.unit.air.BorealisDiphdaUnitTypes;
 import org.mindustrytool.NewUniverse.content.borealis.content.unit.air.BorealisJuniorUnitTypes;
@@ -28,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class BorealisContents {
 
     private final BorealisItems items;
+    private final BorealisLiquids liquids;
     private final BorealisIndusUnitTypes naval;
     private final BorealisNoaUnitTypes ground;
     private final BorealisCoreUnitTypes core;
@@ -40,10 +41,14 @@ public class BorealisContents {
     private final BorealisProductionBlocks productionBlocks;
     private final BorealisTurretBlocks turretBlocks;
     private final BorealisEnvironmentBlocks environmentBlocks;
-    private final BorealisOreBlocks oreBlocks;
 
     // items
     public Item cophalast;
+
+    // liquids
+    public mindustry.type.Liquid cryoWater;
+    public mindustry.type.Liquid plasmaJuice;
+
     public Item duras;
     public Item fabris;
     public Item farasAlloy;
@@ -155,6 +160,15 @@ public class BorealisContents {
     public Block lucis;
     public Block novolary;
 
+    // environment props
+    public Block boulder;
+    public Block redBoulder;
+    public Block iceBoulder;
+    public Block darkblueBoulder;
+    public Block darkDirtBoulder;
+    public Block redCrystalCluster;
+    public Block blueCrystalBlocks;
+
     public void loadContent() {
         items.loadContent();
         cophalast = items.cophalast;
@@ -171,6 +185,10 @@ public class BorealisContents {
         temperedGlass = items.temperedGlass;
         tentias = items.tentias;
         vastum = items.vastum;
+
+        liquids.loadContent();
+        cryoWater = liquids.cryoWater;
+        plasmaJuice = liquids.plasmaJuice;
 
         core.loadContent();
         miles = core.miles;
@@ -270,6 +288,12 @@ public class BorealisContents {
         novolary = turretBlocks.novolary;
 
         environmentBlocks.loadContent();
-        oreBlocks.loadContent();
+        boulder = environmentBlocks.boulder;
+        redBoulder = environmentBlocks.redBoulder;
+        iceBoulder = environmentBlocks.iceBoulder;
+        darkblueBoulder = environmentBlocks.darkblueBoulder;
+        darkDirtBoulder = environmentBlocks.darkDirtBoulder;
+        redCrystalCluster = environmentBlocks.redCrystalCluster;
+        blueCrystalBlocks = environmentBlocks.blueCrystalBlocks;
     }
 }
