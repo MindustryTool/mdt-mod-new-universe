@@ -40,30 +40,30 @@ public class BorealisDistributionBlocks {
     public void loadContent() {
         conduit = new Conduit("conduit") {{
             requirements(Category.liquid, ItemStack.with(
-                borealisItems.fabris, 1
+                    borealisItems.fabris, 1
             ));
             health = 45;
         }};
 
         conduitRouter = new LiquidRouter("conduit-router") {{
             requirements(Category.liquid, ItemStack.with(
-                borealisItems.fabris, 4,
-                borealisItems.simus, 2
+                    borealisItems.fabris, 4,
+                    borealisItems.simus, 2
             ));
             liquidCapacity = 20f;
         }};
 
         conduitJunction = new LiquidJunction("conduit-junction") {{
             requirements(Category.liquid, ItemStack.with(
-                borealisItems.fabris, 2,
-                borealisItems.simus, 2
+                    borealisItems.fabris, 2,
+                    borealisItems.simus, 2
             ));
         }};
 
         conduitBridge = new LiquidBridge("conduit-bridge") {{
             requirements(Category.liquid, ItemStack.with(
-                borealisItems.fabris, 4,
-                borealisItems.simus, 8
+                    borealisItems.fabris, 4,
+                    borealisItems.simus, 8
             ));
             range = 4;
             hasPower = false;
@@ -71,8 +71,8 @@ public class BorealisDistributionBlocks {
 
         liquidContainer = new LiquidRouter("liquid-container") {{
             requirements(Category.liquid, ItemStack.with(
-                borealisItems.farasAlloy, 10,
-                borealisItems.simus, 15
+                    borealisItems.farasAlloy, 10,
+                    borealisItems.simus, 15
             ));
             liquidCapacity = 700f;
             size = 2;
@@ -81,8 +81,8 @@ public class BorealisDistributionBlocks {
 
         liquidTank = new LiquidRouter("liquid-tank") {{
             requirements(Category.liquid, ItemStack.with(
-                borealisItems.farasAlloy, 25,
-                borealisItems.simus, 25
+                    borealisItems.farasAlloy, 25,
+                    borealisItems.simus, 25
             ));
             size = 3;
             liquidCapacity = 1500f;
@@ -92,7 +92,7 @@ public class BorealisDistributionBlocks {
 
         duct = new Duct("duct") {{
             requirements(Category.distribution, ItemStack.with(
-                borealisItems.farasAlloy, 1
+                    borealisItems.farasAlloy, 1
             ));
             health = 90;
             speed = 4f;
@@ -100,8 +100,8 @@ public class BorealisDistributionBlocks {
 
         armoredDuct = new Duct("armored-duct") {{
             requirements(Category.distribution, ItemStack.with(
-                borealisItems.farasAlloy, 2,
-                borealisItems.navitas, 1
+                    borealisItems.farasAlloy, 2,
+                    borealisItems.navitas, 1
             ));
             health = 140;
             speed = 4f;
@@ -110,8 +110,8 @@ public class BorealisDistributionBlocks {
 
         ductRouter = new DuctRouter("duct-router") {{
             requirements(Category.distribution, ItemStack.with(
-                borealisItems.farasAlloy, 4,
-                borealisItems.cophalast, 2
+                    borealisItems.farasAlloy, 4,
+                    borealisItems.cophalast, 2
             ));
             health = 90;
             speed = 4f;
@@ -119,7 +119,7 @@ public class BorealisDistributionBlocks {
 
         ductBridge = new DuctBridge("duct-bridge") {{
             requirements(Category.distribution, ItemStack.with(
-                borealisItems.farasAlloy, 15
+                    borealisItems.farasAlloy, 15
             ));
             health = 90;
             speed = 4f;
@@ -127,8 +127,8 @@ public class BorealisDistributionBlocks {
 
         overflowDuct = new OverflowDuct("overflow-duct") {{
             requirements(Category.distribution, ItemStack.with(
-                borealisItems.cophalast, 8,
-                borealisItems.farasAlloy, 8
+                    borealisItems.cophalast, 8,
+                    borealisItems.farasAlloy, 8
             ));
             health = 90;
             speed = 4f;
@@ -136,8 +136,8 @@ public class BorealisDistributionBlocks {
 
         unoverflowDuct = new OverflowDuct("unoverflow-duct") {{
             requirements(Category.distribution, ItemStack.with(
-                borealisItems.cophalast, 8,
-                borealisItems.farasAlloy, 8
+                    borealisItems.cophalast, 8,
+                    borealisItems.farasAlloy, 8
             ));
             health = 90;
             speed = 4f;
