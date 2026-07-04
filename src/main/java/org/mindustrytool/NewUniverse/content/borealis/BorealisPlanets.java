@@ -3,7 +3,6 @@ package org.mindustrytool.NewUniverse.content.borealis;
 import arc.graphics.Color;
 import lombok.RequiredArgsConstructor;
 import mindustry.content.Blocks;
-import mindustry.content.Items;
 import mindustry.graphics.g3d.HexMesh;
 import mindustry.type.ItemStack;
 import mindustry.type.Planet;
@@ -36,11 +35,14 @@ public class BorealisPlanets {
         gen.darkblueFloor = contents.darkblueFloor;
         gen.blueCrystalFloor = contents.blueCrystalFloor;
         gen.denseBlueCrystalFloor = contents.denseBlueCrystalFloor;
+        gen.sandFloor = contents.sandFloor;
         gen.oreCophalast = contents.oreCophalast;
         gen.oreDuras = contents.oreDuras;
         gen.oreNavitas = contents.oreNavitas;
         gen.oreVastum = contents.oreVastum;
         gen.oreWallPausis = contents.oreWallPausis;
+        gen.oreRudis = contents.oreRudis;
+        gen.oreSand = contents.oreSand;
         gen.stoneWall = contents.wallBlock;
         gen.redWall = contents.redWall;
         gen.redDirtWall = contents.redDirtWall;
@@ -52,15 +54,15 @@ public class BorealisPlanets {
             generator = gen;
             sectorSeed = 42;
             startSector = 10;
-            defaultCore = Blocks.coreShard;
+            defaultCore = contents.coreBasis;
             meshLoader = () -> new HexMesh(erisa, 6);
             accessible = true;
             alwaysUnlocked = true;
             ruleSetter = r -> {
                 r.waves = true;
                 r.loadout = ItemStack.list(
-                    Items.copper, 40,
-                    Items.lead, 20
+                    contents.rudis, 30,
+                    contents.sand, 20
                 );
             };
             atmosphereRadIn = 0.02f;

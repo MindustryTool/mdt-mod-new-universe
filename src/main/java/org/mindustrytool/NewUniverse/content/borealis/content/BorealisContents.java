@@ -4,7 +4,9 @@ import mindustry.type.Item;
 import mindustry.type.UnitType;
 import mindustry.world.Block;
 import org.mindustrytool.NewUniverse.content.borealis.content.building.BorealisCoreBlocks;
+import org.mindustrytool.NewUniverse.content.borealis.content.building.BorealisDefenseBlocks;
 import org.mindustrytool.NewUniverse.content.borealis.content.building.BorealisDistributionBlocks;
+import org.mindustrytool.NewUniverse.content.borealis.content.building.BorealisDrillBlocks;
 import org.mindustrytool.NewUniverse.content.borealis.content.building.BorealisPowerBlocks;
 import org.mindustrytool.NewUniverse.content.borealis.content.building.BorealisProductionBlocks;
 import org.mindustrytool.NewUniverse.content.borealis.content.building.BorealisTurretBlocks;
@@ -37,7 +39,9 @@ public class BorealisContents {
     private final BorealisJuniorUnitTypes junior;
     private final BorealisDiphdaUnitTypes air;
     private final BorealisCoreBlocks coreBlocks;
+    private final BorealisDefenseBlocks defenseBlocks;
     private final BorealisDistributionBlocks distributionBlocks;
+    private final BorealisDrillBlocks drillBlocks;
     private final BorealisPowerBlocks powerBlocks;
     private final BorealisProductionBlocks productionBlocks;
     private final BorealisTurretBlocks turretBlocks;
@@ -134,22 +138,34 @@ public class BorealisContents {
     public Block pwr3d;
     public Block pwr4a;
 
-    // production (preview)
-    public Block prod2a;
-    public Block prod2b;
-    public Block prod2c;
-    public Block prod2d;
-    public Block prod2e;
-    public Block prod2f;
-    public Block prod2g;
-    public Block prod2h;
-    public Block prod2i;
-    public Block prod2k;
-    public Block prod3a;
-    public Block prod3b;
-    public Block prod3c;
-    public Block prod3d;
-    public Block prod3e;
+    // production (tier 1-5)
+    public Block runeForge;
+    public Block alfKiln;
+    public Block flaxolCrucible;
+    public Block dwarfAnvil;
+    public Block farasSmelter;
+    public Block seidrCauldron;
+    public Block aetherForge;
+    public Block aesirResonator;
+    public Block odinsForge;
+    // drills
+    public Block rootDrill;
+    public Block dwarfBorer;
+    public Block bifrostExtractor;
+
+    // defense
+    public Block stoneRampart;
+    public Block alloyBulwark;
+    public Block tentiasBarrier;
+
+    // power
+    public Block runeGenerator;
+    public Block crystalReactor;
+    public Block bifrostArray;
+    public Block yggdrasilCore;
+    public Block runeCapacitor;
+    public Block powerNode;
+    public Block powerNodeLarge;
 
     // turrets
     public Block ferios;
@@ -170,6 +186,7 @@ public class BorealisContents {
     public Block darkDirtFloor;
     public Block blueCrystalFloor;
     public Block denseBlueCrystalFloor;
+    public Block sandFloor;
 
     // environment walls
     public Block wallBlock;
@@ -185,6 +202,8 @@ public class BorealisContents {
     public Block oreNavitas;
     public Block oreVastum;
     public Block oreWallPausis;
+    public Block oreRudis;
+    public Block oreSand;
 
     // environment props
     public Block boulder;
@@ -268,6 +287,8 @@ public class BorealisContents {
         oreNavitas = ores.oreNavitas;
         oreVastum = ores.oreVastum;
         oreWallPausis = ores.oreWallPausis;
+        oreRudis = ores.oreRudis;
+        oreSand = ores.oreSand;
 
         distributionBlocks.loadContent();
         conduit = distributionBlocks.conduit;
@@ -284,30 +305,34 @@ public class BorealisContents {
         unoverflowDuct = distributionBlocks.unoverflowDuct;
 
         powerBlocks.loadContent();
-        pwr2a = powerBlocks.pwr2a;
-        pwr2b = powerBlocks.pwr2b;
-        pwr3a = powerBlocks.pwr3a;
-        pwr3b = powerBlocks.pwr3b;
-        pwr3c = powerBlocks.pwr3c;
-        pwr3d = powerBlocks.pwr3d;
-        pwr4a = powerBlocks.pwr4a;
+        runeGenerator = powerBlocks.runeGenerator;
+        crystalReactor = powerBlocks.crystalReactor;
+        bifrostArray = powerBlocks.bifrostArray;
+        yggdrasilCore = powerBlocks.yggdrasilCore;
+        runeCapacitor = powerBlocks.runeCapacitor;
+        powerNode = powerBlocks.powerNode;
+        powerNodeLarge = powerBlocks.powerNodeLarge;
+
+        drillBlocks.loadContent();
+        rootDrill = drillBlocks.rootDrill;
+        dwarfBorer = drillBlocks.dwarfBorer;
+        bifrostExtractor = drillBlocks.bifrostExtractor;
+
+        defenseBlocks.loadContent();
+        stoneRampart = defenseBlocks.stoneRampart;
+        alloyBulwark = defenseBlocks.alloyBulwark;
+        tentiasBarrier = defenseBlocks.tentiasBarrier;
 
         productionBlocks.loadContent();
-        prod2a = productionBlocks.prod2a;
-        prod2b = productionBlocks.prod2b;
-        prod2c = productionBlocks.prod2c;
-        prod2d = productionBlocks.prod2d;
-        prod2e = productionBlocks.prod2e;
-        prod2f = productionBlocks.prod2f;
-        prod2g = productionBlocks.prod2g;
-        prod2h = productionBlocks.prod2h;
-        prod2i = productionBlocks.prod2i;
-        prod2k = productionBlocks.prod2k;
-        prod3a = productionBlocks.prod3a;
-        prod3b = productionBlocks.prod3b;
-        prod3c = productionBlocks.prod3c;
-        prod3d = productionBlocks.prod3d;
-        prod3e = productionBlocks.prod3e;
+        runeForge = productionBlocks.runeForge;
+        alfKiln = productionBlocks.alfKiln;
+        flaxolCrucible = productionBlocks.flaxolCrucible;
+        dwarfAnvil = productionBlocks.dwarfAnvil;
+        farasSmelter = productionBlocks.farasSmelter;
+        seidrCauldron = productionBlocks.seidrCauldron;
+        aetherForge = productionBlocks.aetherForge;
+        aesirResonator = productionBlocks.aesirResonator;
+        odinsForge = productionBlocks.odinsForge;
 
         turretBlocks.loadContent();
         ferios = turretBlocks.ferios;
@@ -328,6 +353,7 @@ public class BorealisContents {
         darkDirtFloor = environmentBlocks.darkDirtFloor;
         blueCrystalFloor = environmentBlocks.blueCrystalFloor;
         denseBlueCrystalFloor = environmentBlocks.denseBlueCrystalFloor;
+        sandFloor = environmentBlocks.sandFloor;
         wallBlock = environmentBlocks.wallBlock;
         redWall = environmentBlocks.redWall;
         redDirtWall = environmentBlocks.redDirtWall;
