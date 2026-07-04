@@ -7,6 +7,8 @@ import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.Prop;
 import mindustry.world.blocks.environment.StaticWall;
 
+
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -24,6 +26,7 @@ public class BorealisEnvironmentBlocks {
     public Block darkDirtFloor;
     public Block blueCrystalFloor;
     public Block denseBlueCrystalFloor;
+    public Block sandFloor;
 
     // walls
     public Block wallBlock;
@@ -46,6 +49,18 @@ public class BorealisEnvironmentBlocks {
         floors();
         walls();
         props();
+        linkFloorWalls();
+    }
+
+    private void linkFloorWalls() {
+        ((Floor) stoneFloor).wall = (StaticWall) wallBlock;
+        ((Floor) redFloor).wall = (StaticWall) redWall;
+        ((Floor) iceFloor).wall = (StaticWall) iceWall;
+        ((Floor) darkblueFloor).wall = (StaticWall) darkblueWall;
+        ((Floor) darkDirtFloor).wall = (StaticWall) redDirtWall;
+        ((Floor) blueCrystalFloor).wall = (StaticWall) blueCrystalWall;
+        ((Floor) denseBlueCrystalFloor).wall = (StaticWall) blueCrystalWall;
+        ((Floor) sandFloor).wall = (StaticWall) wallBlock;
     }
 
     private void floors() {
@@ -82,6 +97,11 @@ public class BorealisEnvironmentBlocks {
 
         denseBlueCrystalFloor = new Floor("dense-blue-crystal-floor", 4) {{
             mapColor = Color.valueOf("2060a0");
+            status = StatusEffects.none;
+        }};
+
+        sandFloor = new Floor("sand-floor", 3) {{
+            mapColor = Color.valueOf("d4c878");
             status = StatusEffects.none;
         }};
     }

@@ -20,6 +20,8 @@ public class BorealisOres {
     public Block oreNavitas;
     public Block oreVastum;
     public Block oreWallPausis;
+    public Block oreRudis;
+    public Block oreSand;
 
     public void loadContent() {
         oreCophalast = new OreBlock("ore-cophalast", borealisItems.cophalast) {{
@@ -43,6 +45,16 @@ public class BorealisOres {
         }};
 
         oreWallPausis = new OreBlock("ore-wall-pausis", borealisItems.pausis) {{
+            variants = 3;
+            oreDefault = true;
+        }};
+
+        oreRudis = new OreBlock("ore-rudis", borealisItems.rudis) {{
+            variants = 3;
+            oreDefault = true;
+        }};
+
+        oreSand = new OreBlock("ore-sand", borealisItems.sand) {{
             variants = 3;
             oreDefault = true;
         }};
