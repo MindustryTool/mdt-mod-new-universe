@@ -17,26 +17,27 @@ public class ErisaTechTree {
 
     public void loadContent() {
         TechTree.nodeRoot("erisa", content.coreBasis, () -> {
-            // T1 - MIDGARD: foundation
+            // basic ores — immediately mineable
+            TechTree.node(content.oreRudis, () -> {});
+            TechTree.node(content.oreSand, () -> {});
+            TechTree.node(content.oreNavitas, () -> {});
+
+            // T1 — MIDGARD
             TechTree.node(content.rootDrill, () -> {
-                TechTree.node(content.oreRudis, () -> {});
-                TechTree.node(content.oreSand, () -> {});
                 TechTree.node(content.stoneRampart, () -> {});
             });
-
             TechTree.node(content.runeForge, () -> {
                 TechTree.node(content.alfKiln, () -> {});
                 TechTree.node(content.flaxolCrucible, () -> {
                     TechTree.node(content.powerNode, () -> {});
                 });
             });
-
             TechTree.nodeProduce(content.simus, () -> {
                 TechTree.nodeProduce(content.temperedGlass, () -> {});
                 TechTree.nodeProduce(content.flaxol, () -> {});
             });
 
-            // T2 - SVARTALFHEIM: crafting
+            // T2 — SVARTALFHEIM
             TechTree.node(content.dwarfAnvil, () -> {
                 TechTree.node(content.farasSmelter, () -> {
                     TechTree.node(content.runeGenerator, () -> {
@@ -45,39 +46,38 @@ public class ErisaTechTree {
                     });
                 });
             });
-
             TechTree.nodeProduce(content.fabris, () -> {});
             TechTree.nodeProduce(content.farasAlloy, () -> {});
+            TechTree.node(content.dwarfBorer, () -> {
+                TechTree.node(content.oreVastum, () -> {});
+                TechTree.node(content.oreWallPausis, () -> {});
+            });
 
-            TechTree.node(content.dwarfBorer, () -> {});
-
-            // T3 - VANAHEIM: liquid phase
+            // T3 — VANAHEIM
             TechTree.node(content.seidrCauldron, () -> {
                 TechTree.node(content.aetherForge, () -> {
                     TechTree.node(content.alloyBulwark, () -> {});
                 });
             });
-
             TechTree.nodeProduce(content.tentias, () -> {});
             TechTree.nodeProduce(content.navitas, () -> {});
-
             TechTree.node(content.crystalReactor, () -> {});
             TechTree.node(content.bifrostArray, () -> {});
 
-            // T4 - JOTUNHEIM: heavy forging
+            // T4 — JOTUNHEIM
             TechTree.node(content.aesirResonator, () -> {
-                TechTree.node(content.bifrostExtractor, () -> {});
+                TechTree.node(content.bifrostExtractor, () -> {
+                    TechTree.node(content.oreCophalast, () -> {});
+                    TechTree.node(content.oreDuras, () -> {});
+                });
             });
-
             TechTree.nodeProduce(content.duras, () -> {});
-
             TechTree.node(content.tentiasBarrier, () -> {});
 
-            // T5 - ASGARD: divine
+            // T5 — ASGARD
             TechTree.node(content.odinsForge, () -> {
                 TechTree.node(content.yggdrasilCore, () -> {});
             });
-
             TechTree.nodeProduce(content.cophalast, () -> {});
         });
     }
